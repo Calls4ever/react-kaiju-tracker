@@ -27,3 +27,27 @@ export const fetchSightings = () => fetch(sightingsURL)
 .catch(catchError)
 
 // TODO: define a few more sighting fetches
+export const updateKaiju=(id, editedKaiju)=> fetch(`http://localhost:4000/kaijus/${id}`,{
+        method: "PATCH",
+        headers:{ 'content-type': 'application/json',
+                  'accept': 'application/json'},
+        body: JSON.stringify(editedKaiju)
+    })
+    .then(parseData)
+    .catch(catchError)
+
+export const createKaiju=newKaiju=> fetch(kaijusURL,{
+        method: "POST",
+        headers: {
+            accept: 'application/json',
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(newKaiju)
+    })
+        .then(parseData)
+        .catch(catchError)
+
+export const deleteKaiju=id=>{
+    fetch(`http://localhost:4000/kaijus/${id}`,{ method: 'DELETE',})
+}
+   
